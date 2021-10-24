@@ -1,10 +1,7 @@
-//import {determineDir,determineLoc} from './determine.mjs';
-//determineDir
+
 const {determineDir,determineLoc} = require('./determine.js');
-//const {determineLoc} = require('./determine.js');
 
-const commandExec = command => {
-
+const marsroverMain = command => {
 
     const [maxX,maxY] = command[0].split(' ')
    // console.log(maxX)
@@ -30,4 +27,4 @@ const commandExec = command => {
     return (DD+' '+dir)
 }
 
-module.exports = commandExec
+module.exports = marsroverMain
