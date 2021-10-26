@@ -3,20 +3,23 @@ const { determineDir, determineLoc } = require('./marsrover_determine.js');
 const commandProcess = (plateau_size, filledLoc, moveCmd) => {
     filledLoc.forEach((rover, index) => {
         let cmd = moveCmd[index].split('')
-        cmd.forEach((cmdi) => {
-            if (cmdi == 'L' || cmdi == 'R') {
-                rover.dir = determineDir(rover.dir, cmdi)
+        let noObstacle = true
+        for(let i=0;i<=cmd.length && noObstacle;i++) {
+            if (cmd[i] == 'L' || cmd[i] == 'R') {
+                rover.dir = determineDir(rover.dir, cmd[i])
             }
-            if (cmdi == 'M') {
-                determineLoc(plateau_size, cmdi, rover)
+            if (cmd[i] == 'M') {
+                noObstacle = determineLoc(plateau_size, cmd[i], rover,filledLoc)
             }
-        })
+            //if(! noObstacle){console.log('obstacle',rover)}
+        }
     })
-    result = []
+
+    output = []
     filledLoc.forEach((loc) => {
-        result.push(Object.values(loc).toString().replace(/,/g, ' '))
+        output.push(Object.values(loc).toString().replace(/,/g, ' '))
     })
-    return result
+    return output
 }
 module.exports = commandProcess
 
