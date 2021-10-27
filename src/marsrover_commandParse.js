@@ -1,4 +1,4 @@
-const commandCheck = (command) => {
+const commandParse = (command) => {
 
     let plateau_size = {}
     let filledLoc = []
@@ -30,4 +30,4 @@ const commandCheck = (command) => {
     })
     return [plateau_size, filledLoc, moveCmd]
 }
-module.exports = commandCheck
+module.exports = commandParse
