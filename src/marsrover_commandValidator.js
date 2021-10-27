@@ -1,16 +1,14 @@
-
-//  ['5 5', '1 2 N', 'LMLMLMLMM', '3 3 E', 'MMRMMRMRRM',]
-
+// This functions checks the input command format
+//input :  array of commands
+//output : returns indicator true or false 
+// first element - upper limit coordinates 
 // second element - coordinate with direction(N,S,E or W)   is followed by
 // third element - direction (L,R) or movement(M) command  
-// odd indexed element conatains coordiantes followed by even indexed element contains command
+// odd indexed element contains coordiantes followed by even indexed element contains command
 
 const commandValidator = command => {
-
-    console.log('command validate')
     validCommand = true
-    // first element - upper limit coordinate i=0
-    //let upLimit = command[i]
+    // check first element has upper limit coordinate only
     if (!(command[0].length == 3 &&
         command[0].charAt(1) == ' ' &&
         !isNaN(command[0].charAt(0)) &&
@@ -18,11 +16,8 @@ const commandValidator = command => {
         validCommand = false
     }
     for (let i = 1; i < command.length && validCommand; i++) {
-        // console.log(i % 2)
         let coord = command[i]
-        console.log(coord)
-        if (i % 2 != 0) {
-            console.log('first element validate')
+        if (i % 2 != 0) {  //check odd indexed element contains only coordiantes & direction(N,S,W or E)
             if (!(coord.length == 5 &&
                 !isNaN(coord.charAt(0)) &&
                 coord.charAt(1) == ' ' &&
@@ -35,16 +30,14 @@ const commandValidator = command => {
                 validCommand = false
             }
         }
-        else {
-            console.log('second element validate')
-
+        else {      //check the even indexed element for command string (L or M or R )
             for (icmd = 0; icmd < coord.length && validCommand; icmd++) {
                 if (!(coord.charAt(icmd) == 'L' ||
                     coord.charAt(icmd) == 'R' ||
                     coord.charAt(icmd) == 'M')
                 ) {
                     validCommand = false
-                    console.log(coord.charAt(icmd))
+
                 }
             }
         }
