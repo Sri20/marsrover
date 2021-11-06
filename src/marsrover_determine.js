@@ -24,33 +24,34 @@ const determineDir = (fdir, fcmdi) => {
 const determineLoc = (plateau_size, cmdi, rover, filledLoc) => {
     let roverTemp = { ...rover }
     let noObstacle = false
-    if (rover.dir == 'N' && ((rover.y + 1) <= plateau_size.yMax)) {    
+    if (rover.dir == 'N' && ((rover.y + 1) <= plateau_size.yMax)) {
         roverTemp.y += 1
         if (detectObstcle(filledLoc, roverTemp) == undefined) {
             rover.y += 1
             noObstacle = true
         }
     }
-    if (rover.dir == 'S' && ((rover.y - 1) >= plateau_size.yMin)) { 
+    if (rover.dir == 'S' && ((rover.y - 1) >= plateau_size.yMin)) {
         roverTemp.y -= 1
         if (detectObstcle(filledLoc, roverTemp) == undefined) {
             rover.y -= 1
             noObstacle = true
         }
     }
-    if (rover.dir == 'E' && ((rover.x + 1) <= plateau_size.xMax)) { 
+    if (rover.dir == 'E' && ((rover.x + 1) <= plateau_size.xMax)) {
         roverTemp.x += 1
         if (detectObstcle(filledLoc, roverTemp) == undefined) {
             rover.x += 1
             noObstacle = true
         }
     }
-    if (rover.dir == 'W' && ((rover.x - 1) >= plateau_size.xMin)) { 
+    if (rover.dir == 'W' && ((rover.x - 1) >= plateau_size.xMin)) {
         roverTemp.x -= 1
         if (detectObstcle(filledLoc, roverTemp) == undefined) {
             rover.x -= 1
             noObstacle = true
         }
+    }
     return noObstacle
 }
 
@@ -62,6 +63,5 @@ const detectObstcle = (filledLoc, roverTemp) => {
 }
 
 module.exports = {
-    determineDir,
-    determineLoc
-};
+    determineDir, determineLoc
+}
